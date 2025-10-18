@@ -39,15 +39,37 @@ headers = [
     "price",
 ]
 
+print("verifying headers\n")
+df = pd.read_csv(filename, names=headers)
+print(df.head())
 
-print("Calculate the mean value for the 'normalized-losses' column \n")
+print("replace '?' to NaN\n")
+df.replace("?", np.nan, inplace=True)
+print(df.head(5))
+
+print("Evaluating for Missing Data\n")
+missing_data = df.notnull()
+print(missing_data.head(5))
+
+print("Count missing values in each column\n")
+for column in missing_data.columns.values.tolist():
+    print(column)
+    print(missing_data[column].value_counts())
+    print("")
+
+
+print("Replace NaN in 'normalized-losses' column \n")
 avg_norm_loss = df["normalized-losses"].astype("float").mean(axis=0)
-print(df["normalized-losses"].replace(np.nan, avg_norm_loss, inplace=False))
+df["normalized-losses"] = df["normalized-losses"].replace(np.nan, int(avg_norm_loss))
+print(df["normalized-losses"])
 
-print("Calculate the mean value for the 'bore' column\n")
+print("Replace NaN in  'bore' column\n")
 avg_bore = df["bore"].astype("float").mean(axis=0)
-print(df["bore"].replace(np.nan, avg_bore, inplace=False))
+df["bore"] = df["bore"].replace(np.nan, avg_bore)
+print(df["bore"])
 
-print(" Replace NaN in 'stroke' column\n")
+print("Replace NaN in 'stroke' column\n")
 avg_stroke = df["stroke"].astype("float").mean(axis=0)
-df["stroke"].replace(np.nan, avg_stroke, inplace=False)
+df["stroke"] = df["stroke"].replace(np.nan, avg_stroke)
+print(df["stroke"])
+
