@@ -73,3 +73,30 @@ avg_stroke = df["stroke"].astype("float").mean(axis=0)
 df["stroke"] = df["stroke"].replace(np.nan, avg_stroke)
 print(df["stroke"])
 
+print("count value types in each column with'.value_counts()'method\n")
+print(df["num-of-doors"].value_counts())
+
+print(
+    "We can also use the '.idxmax()' method to calculate the most common type automatically\n"
+)
+print(df["num-of-doors"].value_counts().idxmax())
+
+# replace the missing num-of-doors values by the most frequent
+# df["num-of-doors"].replace(np.nan, "four", inplace=True)
+# df.dropna(subset=["price"], axis=0, inplace=True)
+# df.reset_index(drop=True, inplace=True)
+# df.head()
+
+print(" \t Correct data format \n")
+print(df.dtypes)
+
+print("convert data types to proper format \n")
+df[["bore", "stroke"]] = df[["bore", "stroke"]].astype("float")
+df[["normalized-losses"]] = df[["normalized-losses"]].astype("int")
+df[["price"]] = df[["price"]].astype("float")
+df[["peak-rpm"]] = df[["peak-rpm"]].astype("float")
+
+print(" \t Data types after conversion \n")
+print(df.dtypes)
+
+print("Now you finally obtained the cleansed data set with no missing values and with all data in its proper format.")
