@@ -106,3 +106,12 @@ plt.xlabel("horsepower")
 plt.ylabel("count")
 plt.title("horsepower bins")
 plt.show()
+
+print(
+    "Replacing the bins visuals to the real data one to view the main scene of it on the real dataset"
+)
+plt.hist(df["horsepower"], bins = 3)
+plt.xlabel("horsepower")
+plt.ylabel("count")
+plt.title("horsepower bins")
+plt.show()
