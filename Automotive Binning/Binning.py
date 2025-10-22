@@ -73,9 +73,36 @@ avg_stroke = df["stroke"].astype("float").mean(axis=0)
 df["stroke"] = df["stroke"].replace(np.nan, avg_stroke)
 print(df["stroke"])
 
+print("Replace NaN in 'horsepower' column\n")
+avg_horsepower = df["horsepower"].astype("float").mean(axis=0)
+df["horsepower"] = df["horsepower"].replace(np.nan, avg_horsepower)
+print(df["horsepower"])
 
-print("replace (original value) by (original value)/(maximum value)")
-df['length'] = df['length']/df['length'].max()
-df['width'] = df['width']/df['width'].max()
-df['height'] = df['height']/df['height'].max()
-print(df[['length','width','height']].head())
+
+print("Use the Pandas method 'cut' to segment the 'horsepower' column into 3 bins")
+df["horsepower"] = df["horsepower"].astype(int, copy=True)
+plt.hist(df["horsepower"])
+plt.xlabel("horsepower")
+plt.ylabel("count")
+plt.title("horsepower bins")
+plt.show()
+
+print("Applying 3 bins spaces by using 4 dividers")
+bins = np.linspace(min(df["horsepower"]), max(df["horsepower"]), 4)
+print(bins)
+
+print(
+    "group names & Apply the function 'cut' to determine what each value of df['horsepower'] belongs to"
+)
+group_names = ["Low", "Medium", "High"]
+df["horsepower-binned"] = pd.cut(
+    df["horsepower"], bins, labels=group_names, include_lowest=True
+)
+print(df[["horsepower", "horsepower-binned"]].head(20))
+
+print("Now we successfully narrowed down the intervals from 59 to 3")
+plt.bar(group_names, df["horsepower-binned"].value_counts())
+plt.xlabel("horsepower")
+plt.ylabel("count")
+plt.title("horsepower bins")
+plt.show()
