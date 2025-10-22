@@ -26,21 +26,46 @@ Creation of binary variables for categorical data, preparing the dataset for mac
 ## Technical Scope
 The project processes comprehensive automotive datasets containing vehicle specifications from multiple manufacturers, addressing real-world data challenges including missing values, inconsistent formatting, and varied measurement units. The resulting cleaned datasets support advanced analytics, predictive modeling, and business intelligence applications in the automotive industry.
 
-## Project Team
+## File Structure
+```
+data-wrangling/
+├── data-cleaning.py
+├── missing-values-handling.py
+├── data-type-conversion.py
+└── README.md
 
-**Author**
+data-standardization/
+├── mpg-to-l100km-conversion.py
+├── unit-standardization.py
+├── feature-scaling.py
+└── README.md
+
+data-normalization/
+├── min-max-normalization.py
+├── max-value-normalization.py
+├── z-score-normalization.py
+└── README.md
+
+data-binning/
+├── horsepower-binning.py
+├── equal-width-bins.py
+├── equal-frequency-bins.py
+└── README.md
+
+data-bins-visualization/
+├── histogram-bins.py
+├── bar-chart-bins.py
+├── comparative-visualizations.py
+└── README.md
+
+data-indicator-variable/
+├── one-hot-encoding.py
+├── dummy-variables.py
+├── categorical-encoding.py
+└── README.md
+```
+## Author
 Joseph Santarcangelo
-
-**Contributors**
-- Mahdi Noorian PhD
-- Bahare Talayian
-- Eric Xiao
-- Steven Dong
-- Parizad
-- Hima Vasudevan
-- Fiorella Wenver
-- Yi Yao
-- Abhishek Gagneja
 
 ## Project Outcomes
 The implemented data processing pipeline transforms complex automotive data into structured formats suitable for analytical applications, providing foundations for vehicle performance analysis, pricing models, and market trend identification in the automotive sector.
