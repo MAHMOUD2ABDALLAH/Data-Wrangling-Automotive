@@ -79,39 +79,34 @@ df["horsepower"] = df["horsepower"].replace(np.nan, avg_horsepower)
 print(df["horsepower"])
 
 
-print("Use the Pandas method 'cut' to segment the 'horsepower' column into 3 bins")
-df["horsepower"] = df["horsepower"].astype(int, copy=True)
-plt.hist(df["horsepower"])
-plt.xlabel("horsepower")
-plt.ylabel("count")
-plt.title("horsepower bins")
-plt.show()
+print(
+    "Use the Panda method 'get_dummies' to assign numerical values to different categories of fuel type"
+)
 
-print("Applying 3 bins spaces by using 4 dividers")
-bins = np.linspace(min(df["horsepower"]), max(df["horsepower"]), 4)
-print(bins)
+print(df.columns)
+dummy_variable_1 = pd.get_dummies(df["fuel-type"], dtype=int)
+print(dummy_variable_1.head())
+dummy_variable_1.rename(
+    columns={"gas": "fuel-type-gas", "diesel": "fuel-type-diesel"}, inplace=True
+)
+print(dummy_variable_1.head())
 
 print(
-    "group names & Apply the function 'cut' to determine what each value of df['horsepower'] belongs to"
+    "In the data frame, column 'fuel-type' now has values for 'gas' and 'diesel' as 0s and 1s"
 )
-group_names = ["Low", "Medium", "High"]
-df["horsepower-binned"] = pd.cut(
-    df["horsepower"], bins, labels=group_names, include_lowest=True
-)
-print(df[["horsepower", "horsepower-binned"]].head(20))
-
-print("Now we successfully narrowed down the intervals from 59 to 3")
-plt.bar(group_names, df["horsepower-binned"].value_counts())
-plt.xlabel("horsepower")
-plt.ylabel("count")
-plt.title("horsepower bins")
-plt.show()
+df = pd.concat([df, dummy_variable_1], axis=1)
+df.drop("fuel-type", axis=1, inplace=True)
+print(df.head())
 
 print(
-    "Replacing the bins visuals to the real data one to view the main scene of it on the real dataset"
+    "get indicator variables of aspiration and assign it to data frame 'dummy_variable_2')\n"
 )
-plt.hist(df["horsepower"], bins = 3)
-plt.xlabel("horsepower")
-plt.ylabel("count")
-plt.title("horsepower bins")
-plt.show()
+dummy_variable_2 = pd.get_dummies(df["aspiration"], dtype=int)
+dummy_variable_2.rename(
+    columns={"std": "aspiration-std", "turbo": "aspiration-turbo"}, inplace=True
+)
+print(dummy_variable_2.head())
+
+df = pd.concat([df, dummy_variable_2], axis=1)
+df.drop('aspiration', axis = 1, inplace=True)
+print(df.head())
