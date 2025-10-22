@@ -17,9 +17,6 @@ Scaling of numerical features to standardized ranges, particularly applied to ve
 ### Data Binning
 Categorization of continuous variables into discrete intervals, such as segmenting horsepower values into Low, Medium, and High categories for simplified analysis and visualization.
 
-### Data Bins Visualization
-Development of visual representations for binned data, including histograms and bar charts that demonstrate the distribution of categorized variables and facilitate data interpretation.
-
 ### Data Indicator Variables
 Creation of binary variables for categorical data, preparing the dataset for machine learning algorithms that require numerical input features.
 
@@ -50,12 +47,6 @@ data-binning/
 ├── horsepower-binning.py
 ├── equal-width-bins.py
 ├── equal-frequency-bins.py
-└── README.md
-
-data-bins-visualization/
-├── histogram-bins.py
-├── bar-chart-bins.py
-├── comparative-visualizations.py
 └── README.md
 
 data-indicator-variable/
