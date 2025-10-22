@@ -74,16 +74,8 @@ df["stroke"] = df["stroke"].replace(np.nan, avg_stroke)
 print(df["stroke"])
 
 
-print("Transform mpg to L/100km")
-print(df.head())
-if 'city-mpg' in df.columns:
-    # Convert and keep in same position
-    df['city-mpg'] = 235 / pd.to_numeric(df['city-mpg'], errors='coerce')
-    df = df.rename(columns={'city-mpg': 'city-L/100km'})
-    
-if 'highway-mpg' in df.columns:
-    # Convert and keep in same position
-    df['highway-mpg'] = 235 / pd.to_numeric(df['highway-mpg'], errors='coerce')
-    df = df.rename(columns={'highway-mpg': 'highway-L/100km'})
-
-print(df.head())
+print("replace (original value) by (original value)/(maximum value)")
+df['length'] = df['length']/df['length'].max()
+df['width'] = df['width']/df['width'].max()
+df['height'] = df['height']/df['height'].max()
+print(df[['length','width','height']].head())
